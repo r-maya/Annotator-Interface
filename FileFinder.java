@@ -69,19 +69,20 @@ public class FileFinder{
 			
 			try{
 
-				if ((ae.getSource() == src[0])||(ae.getSource() == src[1])||(ae.getSource() == src[2])){
-					String sel;
-					if(ae.getSource() == src[0]) sel = "1";
-					else if(ae.getSource() == src[1]) sel = "2";
-					else sel = "3";
+				//if ((ae.getSource() == src[0])||(ae.getSource() == src[1])||(ae.getSource() == src[2])){
+					String sel="";
+					for(int l=0; l<src.length; l++){
+						if(ae.getSource() == src[l])	sel = String.valueOf(l+1);
+						//System.out.println(l);
+					}
 					System.out.println("file"+sel);
 					out.writeUTF("file"+sel);
 					String input = in.readUTF();
 					System.out.println(input);
 					System.out.println("calling fetchfile");
-					filefetcher f1 = new filefetcher(input);
-					f1.main(new String[1]);
-				}
+					new Thread(new interfetcher(input)).start();
+					//f1.main(new String[1]);
+				//}
 				
 			}
 			catch(Exception e){

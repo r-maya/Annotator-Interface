@@ -19,23 +19,13 @@ public class filefetcher extends javax.swing.JFrame {
     String s="";
     
     static String ss;
+
     public filefetcher(String sss) {
         System.out.println(sss);
-        initComponents();
         this.ss = sss;
-        try{
-            String thisLine = "";
-            FileReader reader = new FileReader("/Users/RaghuRRB/Documents/annotator/event/source/file.txt");
-            BufferedReader br = new BufferedReader(reader);
-            while ((thisLine = br.readLine()) != null) {
-            s = s+ thisLine;
-            }
-            ss = s;
-        }
-        catch (Exception e){
-            
-        }
-        
+        //s = sss;
+        initComponents();
+
     }
 
     /**
@@ -50,7 +40,7 @@ public class filefetcher extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
@@ -88,7 +78,7 @@ public class filefetcher extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        //jTextArea1.setText(s);
+        //jTextArea1.setText(ss);
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -112,6 +102,7 @@ public class filefetcher extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new filefetcher(ss).setVisible(true);
+                System.out.println("done");
             }
         });
     }
