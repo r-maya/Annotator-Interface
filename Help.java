@@ -36,14 +36,24 @@ public class Help implements Runnable {
 				out.writeUTF("no-okay");
 			input = in.readUTF(); 
 			System.out.println(input);
-			out.writeUTF(String.valueOf(Files.list(Paths.get("/Users/RaghuRRB/Documents/annotator/event/source")).count()));
-			System.out.println(String.valueOf(Files.list(Paths.get("/Users/RaghuRRB/Documents/annotator/event/source")).count()));
 			String source = "/Users/RaghuRRB/Documents/annotator/event/source";
+			File[] ff = new File(source).listFiles();
+			long n = Files.list(Paths.get("/Users/RaghuRRB/Documents/annotator/event/source")).count();
+			//out.writeUTF(String.valueOf(m));
+			long m = n;
+			for(int k=0; k<n; k++){
+				if(ff[k].getName().equals(".DS_Store"))
+					m--;
+				else System.out.println(ff[k].getName());
+			}
+			//System.out.println(String.valueOf(Files.list(Paths.get("/Users/RaghuRRB/Documents/annotator/event/source")).count()));
+			System.out.println(m);
+			out.writeUTF(String.valueOf(m));
 			
 			while(input != "----end----"){
 				input = in.readUTF();
-				System.out.println(input);
-				if((input.equals("file1"))||(input.equals("file1"))||(input.equals("file1"))){
+				System.out.println(input+" inside while");
+				if((input.equals("file1"))||(input.equals("file2"))||(input.equals("file3"))){
 					String filepath = source+"/"+input+".txt";
 					try{
 					      
