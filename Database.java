@@ -1,15 +1,22 @@
 import java.sql.*;
+import java.text.BreakIterator;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class Database {
 	Connection con;
+	Connection con1;
 	PreparedStatement pst;
-	ResultSet rs;
+	ResultSet rs,rs1;
 
 	Database() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:8889/annotator_sample", "root", "root");
 			pst = con.prepareStatement("select * from users where username=? and password=?");
+			//con1 = DriverManager.getConnection("jdbc:mysql://localhost:8889/annotator_sample", "root", "root");
+			
 
 		} catch (Exception e) {
 			System.out.println(e);
@@ -75,6 +82,23 @@ public class Database {
 			System.out.println(e);
 			return false;
 		}
+	}
+	
+	public boolean markSentence(String id, String sent, String usr, int marks, int i){
+		try{
+			PreparedStatement pmarks =  con.prepareStatement("INSERT INTO sentences_data (id, sentence, usr, marks, from_file) VALUES (?,?,?,?,?)");
+			pmarks.setString(1,id);
+			pmarks.setString(2,sent);
+			pmarks.setString(3,usr);
+			pmarks.setString(4,String.valueOf(marks));
+			pmarks.setString(5, String.valueOf(i));
+			int flag = pmarks.executeUpdate();
+			
+		}
+		catch (Exception e){
+			System.out.println(e);
+		}
+		return true;
 	}
 	/*
 	 * public static void main(String [] args){ Database db = new Database();
