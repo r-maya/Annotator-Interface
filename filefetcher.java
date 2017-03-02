@@ -46,6 +46,7 @@ public class filefetcher extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setText(ss);
+        jTextArea1.setLineWrap(true);
         System.out.println("text_SET :D "+ss);
         jScrollPane1.setViewportView(jTextArea1);
 
